@@ -1,0 +1,58 @@
+﻿@using Curd_with_import_export_excel.Models
+@model IEnumerable<Product>
+
+
+<h2>Product List</h2>
+<a asp-action="Create" asp-controller="Product" class="btn btn-primary">Add New Product</a>
+<a asp-action="Export" asp-controller="Product" class="btn btn-success">Export to Excel</a>
+<a asp-action="ExportPdf" asp-controller="Product" class="btn btn-success">Export to Pdf</a>
+<a asp-action="Import" asp-controller="Product" class="btn btn-info">Import from Excel</a>
+
+
+<!-- Create Product Form -->
+<div class="card p-3 mb-3 m-2">
+    <h4>Create New Product</h4>
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" name="Name" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <input type="text" name="Description" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label>Price:</label>
+            <input type="number" name="Price" class="form-control" step="0.01" required />
+        </div>
+        <button type="submit" class="btn btn-success mt-2  float-lg-end">Create</button>
+    </form>
+</div>
+
+
+<!-- Product List Table -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

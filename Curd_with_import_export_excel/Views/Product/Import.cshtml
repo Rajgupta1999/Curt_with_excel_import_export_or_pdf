@@ -1,0 +1,12 @@
+﻿@using Curd_with_import_export_excel.Models
+@model Product
+
+<h2>Import Products from Excel</h2>
+<form asp-action="Import" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Select Excel File</label>
+        <input type="file" name="file" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
